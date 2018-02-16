@@ -192,7 +192,7 @@
         <!--Projects-->
         <scene sceneID="RII-Co-5gg">
             <objects>
-                <viewController storyboardIdentifier="ProjectViewController" title="Projects" automaticallyAdjustsScrollViewInsets="NO" id="QuZ-az-Wz7" customClass="ProjectViewController" customModule="Location_Managers_Check_List_New" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectViewController" title="Projects" automaticallyAdjustsScrollViewInsets="NO" id="QuZ-az-Wz7" customClass="ProjectViewController" customModule="LM_Inventory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yrc-0f-ozN"/>
                         <viewControllerLayoutGuide type="bottom" id="mJr-7t-ig5"/>
@@ -308,10 +308,10 @@
             </objects>
             <point key="canvasLocation" x="2591.1999999999998" y="506.89655172413796"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Item To Inventory View Controller-->
         <scene sceneID="JYr-AF-Iya">
             <objects>
-                <viewController id="MzC-Fl-ZJu" sceneMemberID="viewController">
+                <viewController id="MzC-Fl-ZJu" customClass="AddItemToInventoryViewController" customModule="LM_Inventory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7WQ-jt-Ryn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,12 +319,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="m7j-VL-M0p">
                                 <rect key="frame" x="10" y="74" width="355" height="578"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name of Item" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="isA-Hp-qM4">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name of Item" borderStyle="roundedRect" placeholder="Name of Item" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="isA-Hp-qM4">
                                         <rect key="frame" x="10" y="0.0" width="335" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="aLX-tB-H7G"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -332,12 +333,13 @@
                                             <action selector="ItemNameTextField:" destination="2gG-DQ-jhD" eventType="editingDidEnd" id="eQN-f7-6j9"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Items Current Location" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="toi-Ao-EvN">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Items Current Location" borderStyle="roundedRect" placeholder="Items Current Location" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="toi-Ao-EvN">
                                         <rect key="frame" x="10" y="109.5" width="335" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="2G1-38-IDT"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -356,6 +358,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJ2-1l-w2z">
                                                 <rect key="frame" x="125.5" y="0.0" width="35" height="30"/>
                                                 <state key="normal" title="Scan"/>
+                                                <connections>
+                                                    <action selector="QRScanButton:" destination="MzC-Fl-ZJu" eventType="touchUpInside" id="mzJ-s4-Py4"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -368,17 +373,21 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytq-Z1-YUv">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ytq-Z1-YUv">
                                                 <rect key="frame" x="166.5" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="BulkItemSwitchAction:" destination="MzC-Fl-ZJu" eventType="valueChanged" id="GIf-p0-DNp"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Number Items" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PBd-yE-Ops">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Number Items" borderStyle="roundedRect" placeholder="Number Items" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PBd-yE-Ops">
                                         <rect key="frame" x="10" y="418.5" width="335" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Dky-pw-yy4"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -396,6 +405,9 @@
                                         <state key="normal" title="Save">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="SaveButton:" destination="MzC-Fl-ZJu" eventType="touchUpInside" id="4gP-MX-gfW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -417,6 +429,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dK9-UM-x8Q"/>
                     </view>
+                    <connections>
+                        <outlet property="BulkItemSwitch" destination="ytq-Z1-YUv" id="Ul0-rF-uPJ"/>
+                        <outlet property="ItemAmountTextField" destination="PBd-yE-Ops" id="kpK-PI-73f"/>
+                        <outlet property="ItemLocationTextField" destination="toi-Ao-EvN" id="yrB-Y7-VkE"/>
+                        <outlet property="ItemNameTextField" destination="isA-Hp-qM4" id="3N5-Pt-nA4"/>
+                        <outlet property="SaveButtonOutlet" destination="jg7-VM-lw1" id="yAU-OV-Zk2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKe-sr-xrS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2gG-DQ-jhD" userLabel="Exit" sceneMemberID="exit"/>
@@ -444,7 +463,7 @@
         <!--Add Project-->
         <scene sceneID="f8O-Ao-GHr">
             <objects>
-                <viewController title="Add Project" id="ook-oc-11N" customClass="AddProjectViewController" customModule="Location_Managers_Check_List_New" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add Project" id="ook-oc-11N" customClass="AddProjectViewController" customModule="LM_Inventory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gav-xt-ifp"/>
                         <viewControllerLayoutGuide type="bottom" id="rzU-zs-QLb"/>
@@ -558,7 +577,7 @@
         <!--Add Team Members Table View Controller-->
         <scene sceneID="Sbu-IZ-aZt">
             <objects>
-                <tableViewController id="9si-3U-Zpn" customClass="AddTeamMembersTableViewController" customModule="Location_Managers_Check_List_New" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="9si-3U-Zpn" customClass="AddTeamMembersTableViewController" customModule="LM_Inventory" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cl5-dB-VHH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

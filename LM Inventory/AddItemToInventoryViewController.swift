@@ -9,10 +9,40 @@
 import UIKit
 
 class AddItemToInventoryViewController: UIViewController {
-
+    
+    
+    @IBOutlet var ItemNameTextField: UITextField!
+    
+    @IBOutlet var ItemLocationTextField: UITextField!
+    
+    @IBOutlet var ItemAmountTextField: UITextField!
+    
+    @IBOutlet var BulkItemSwitch: UISwitch!
+    
+    @IBOutlet var SaveButtonOutlet: UIButton!
+    
+    
+    @IBAction func QRScanButton(_ sender: Any) {
+    }
+    
+    @IBAction func BulkItemSwitchAction(_ sender: Any) {
+        if BulkItemSwitch.isOn != true{
+            ItemAmountTextField.isHidden = true
+        } else {
+            ItemAmountTextField.isHidden = false
+        }
+    }
+    
+    
+    @IBAction func SaveButton(_ sender: Any) {
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+    SaveButtonOutlet.layer.cornerRadius = 10
+    SaveButtonOutlet.clipsToBounds = true
+    ItemAmountTextField.isHidden = true
         // Do any additional setup after loading the view.
     }
 
